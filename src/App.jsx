@@ -9,6 +9,8 @@ import {
 import Profile from './pages/profile'
 import Main from './pages/main'
 import Card from './pages/card' 
+import Genre from './components/genre'
+
 
 function App() {
   
@@ -22,6 +24,7 @@ function App() {
         <Route path='/main' element={<Main/>}></Route>
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/:title' element={<Card></Card>}></Route>
+        <Route path='/genre/:genre' element={<Main/>}></Route>
       </Routes>
     </HashRouter>
   )

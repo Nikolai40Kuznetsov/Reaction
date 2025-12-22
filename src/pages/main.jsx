@@ -1,22 +1,41 @@
-import { HashRouter } from "react-router-dom"
 import { movies } from "../storage/movie_data"
-import {
-    Route,
-    Routes,
-    NavLink
-  } from 'react-router-dom'
-import Card from "./card"
-
+import { NavLink, useParams } from 'react-router-dom'
 
 function Main(){
-    
+    const { genre } = useParams()
+    let genreDuplicate = []
+    let filterMovies = []
+
+    for(let i = 0; i < movies.length; ++i){
+        genreDuplicate[i] = movies[i].genre;
+    }
+
+    const genres = genreDuplicate.filter((item, index, self) => {
+        return self.indexOf(item) === index;
+    });
+
+    if(genre){
+        filterMovies = movies.filter(item => item.genre === genre)
+    } else{
+        filterMovies = movies
+    }
+
     return(
         <>
-            {movies.map((item)=>{
+            <div>
+                {genres.map(item => {
+                    return(
+                        <>
+                        <NavLink to={'/genre/' + item}>{item}</NavLink>
+                        </>
+                    )
+                })}
+            </div>
+            {filterMovies.map((item)=>{
                 return(<>
-                            <NavLink to={'/'+ item.title}>
-                                <img  src={item.img}/>
+                            <NavLink className={"title"} to={'/'+ item.title}>
                                 <h2>{item.title}</h2>
+                                <img  src={item.img}/>
                             </NavLink>
                             </>
                         )})} 
@@ -26,6 +45,3 @@ function Main(){
 }
 
 export default Main
-
-
-
