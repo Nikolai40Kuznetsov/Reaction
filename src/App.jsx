@@ -9,22 +9,26 @@ import {
 import Profile from './pages/profile'
 import Main from './pages/main'
 import Card from './pages/card' 
-import Genre from './components/genre'
-
 
 function App() {
-  
   return (
     <HashRouter>
-      <div>
-        <NavLink to='/main'>MAIN</NavLink>
-        <NavLink to='/profile'>PROFILE</NavLink>
-      </div>
+      <nav className="navbar">
+        <NavLink to='/main' className="logo">
+          MOVIE<span>HUB</span>
+        </NavLink>
+        <div className="nav-links">
+          <NavLink to='/main'>ГЛАВНАЯ</NavLink>
+          <NavLink to='/profile'>ПРОФИЛЬ</NavLink>
+        </div>
+      </nav>
+
       <Routes>
-        <Route path='/main' element={<Main/>}></Route>
-        <Route path='/profile' element={<Profile/>}></Route>
-        <Route path='/:title' element={<Card></Card>}></Route>
-        <Route path='/genre/:genre' element={<Main/>}></Route>
+        <Route path='/main' element={<Main/>}/>
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/:title' element={<Card/>}/>
+        <Route path='/genre/:genre' element={<Main/>}/>
+        <Route path='/' element={<Main/>}/> 
       </Routes>
     </HashRouter>
   )
